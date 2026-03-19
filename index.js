@@ -6058,7 +6058,7 @@ app.get("/init-data", async (req, res) => {
   };
 
   try {
-    await db.ref("restaurants").set(initialRestaurants);
+    await db.ref("restaurants").set(initialData);
     res.json({ message: "初始資料匯入成功！" });
   } catch (error) {
     res.status(500).json({ error: "匯入失敗" });
