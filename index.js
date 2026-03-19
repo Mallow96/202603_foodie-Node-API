@@ -20,6 +20,21 @@ admin.initializeApp({
 
 const db = admin.database();
 
+// 加在所有 route 前面（約第 30 行）
+app.get("/init-data", async (req, res) => {
+  // 你的原始餐廳資料（從 data.js 複製過來）
+  const initialRestaurants = [
+    // ... 貼上你的 r1001, r1002 等餐廳資料
+  ];
+
+  try {
+    await db.ref("restaurants").set(initialRestaurants);
+    res.json({ message: "初始資料匯入成功！" });
+  } catch (error) {
+    res.status(500).json({ error: "匯入失敗" });
+  }
+});
+
 //---------------------------------1. 餐廳相關API------------------------------------------------
 
 //取得所有/多間餐廳
