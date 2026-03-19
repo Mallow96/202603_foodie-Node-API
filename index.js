@@ -6294,6 +6294,19 @@ app.delete("/reservations/:bookingId", async (req, res) => {
   }
 });
 
+//編輯訂位 firebase
+app.put("/reservations/:bookingId", async (req, res) => {
+  const { bookingId } = req.params;
+  const updates = req.body;
+
+  try {
+    await db.ref(`reservations/${bookingId}`).update(updates);
+    res.json({ message: "訂位更新成功" });
+  } catch (error) {
+    res.status(500).json({ error: "更新失敗" });
+  }
+});
+
 //---------------------------------3. 會員相關API------------------------------------------------
 
 //取得所有會員 (admin)
