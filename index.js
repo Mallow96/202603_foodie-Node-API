@@ -8,7 +8,13 @@ const { restaurants } = require("./data");
 
 const app = express();
 
-app.use(cors()); // 允許跨域請求（讓前端可以打這個 API）
+app.use(
+  cors({
+    origin: [
+      "http://localhost:5173", // Vite 預設
+    ],
+  }),
+); // 允許跨域請求（讓前端可以打這個 API）
 app.use(express.json()); // 解析請求 body 裡的 JSON 格式資料
 
 // const serviceAccount = require("./firebase-service-account.json");
