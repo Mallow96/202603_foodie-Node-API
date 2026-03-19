@@ -10,7 +10,8 @@ const app = express();
 app.use(cors()); // 允許跨域請求（讓前端可以打這個 API）
 app.use(express.json()); // 解析請求 body 裡的 JSON 格式資料
 
-const serviceAccount = require("./firebase-service-account.json");
+// const serviceAccount = require("./firebase-service-account.json");
+const serviceAccount = JSON.parse(process.env.FIREBASE_SERVICE_ACCOUNT);
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount),
   databaseURL:
