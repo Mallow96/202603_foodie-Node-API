@@ -1,0 +1,45 @@
+{
+  "members": {
+    "u1001": {
+      "userId": "u1001",
+      "username": "user1",
+      "realName": "林安琪",
+      "phone": "0969185071",
+      "email": "user1@example.com"
+    },
+    "u1002": {
+      "userId": "u1002",
+      "username": "user2",
+      "realName": "李志華",
+      "phone": "0968620880",
+      "email": "user2@example.com"
+    }
+  },
+  "restaurants": {
+    "r1001": {
+      "id": "r1001",
+      "name": "No.1 川味小館",
+      "address": "台北市中山區...",
+      "contactPhone": "04-6751146",
+      "image": "https://picsum.photos/300/200?random=1"
+    },
+    "r1002": {
+      "id": "r1002",
+      "name": "Tokyo Sushi Bar",
+      "address": "台北市信義區...",
+      "contactPhone": "02-88521150",
+      "image": "https://picsum.photos/300/200?random=2"
+    }
+  },
+  "reservations": {
+    "b1001": {
+      "bookingId": "b1001",
+      "userId": "u1001",
+      "restaurantId": "r1001",
+      "date": "2026-03-20",
+      "time": "18:00",
+      "partySize": 4,
+      "customerName": "林安琪"
+    }
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "scripts": {
+    "dev": "nodemon index.js",
+    "start": "node index.js"
+  },
+  "name": "202603_node-api-start",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.6",
+    "express": "^4.22.1",
+    "firebase-admin": "^13.7.0",
+    "nodemon": "^3.1.14"
+  },
+  "engines": {
+    "node": "20.x"
+  }
+}
