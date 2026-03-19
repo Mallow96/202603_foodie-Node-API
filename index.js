@@ -23,7 +23,6 @@ const db = admin.database();
 
 // 加在所有 route 前面（約第 30 行）
 app.get("/init-data", async (req, res) => {
-  // 你的原始餐廳資料（從 data.js 複製過來）
   const initialData = {
     restaurants: [
       {
@@ -6058,7 +6057,7 @@ app.get("/init-data", async (req, res) => {
   };
 
   try {
-    await db.ref("restaurants").set(initialData);
+    await db.ref().set(initialData);
     res.json({ message: "初始資料匯入成功！" });
   } catch (error) {
     res.status(500).json({ error: "匯入失敗" });
