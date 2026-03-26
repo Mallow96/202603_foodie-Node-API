@@ -6295,6 +6295,7 @@ app.post("/reservations", async (req, res, next) => {
 
     const newRef = db.ref("reservations").push();
     const newReservation = {
+      userId: payload.userId,
       restaurantId: payload.restaurantId,
       date: payload.date,
       time: payload.time,
