@@ -5807,8 +5807,8 @@ let reservations = [
   },
 ];
 
-let members = [
-  {
+let members = {
+  u1001: {
     userId: "u1001",
     username: "user1",
     realName: "林安琪",
@@ -5927,7 +5927,7 @@ let members = [
       },
     },
   },
-  {
+  u1002: {
     userId: "u1002",
     username: "user2",
     realName: "李志華",
@@ -6038,7 +6038,7 @@ let members = [
       },
     },
   },
-  {
+  u1003: {
     userId: "u1003",
     username: "user3",
     realName: "李明偉",
@@ -6065,6 +6065,6 @@ let members = [
       },
     },
   },
-];
+};
 
 module.exports = { restaurants, reservations, members };
