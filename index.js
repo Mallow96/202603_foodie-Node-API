@@ -18,7 +18,7 @@ app.use(
 app.use(express.json()); // 解析請求 body 裡的 JSON 格式資料
 
 // const serviceAccount = require("./firebase-service-account.json");
-const serviceAccount = JSON.parse(process.env.FIREBASE_SERVICE_ACCOUNT);
+const serviceAccount = require("./firebase-service-account.json");
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount),
   databaseURL:
@@ -5948,6 +5948,20 @@ app.get("/init-data", async (req, res) => {
           "rev4622",
           "rev4819",
         ],
+        notifications: {
+          text: {
+            allOn: true,
+            resvOn: true,
+            promoOn: true,
+            newsletterOn: true,
+          },
+          email: {
+            allOn: true,
+            resvOn: true,
+            promoOn: true,
+            newsletterOn: true,
+          },
+        },
       },
       {
         userId: "u1002",
@@ -6045,6 +6059,20 @@ app.get("/init-data", async (req, res) => {
           "rev4210",
           "rev4173",
         ],
+        notifications: {
+          text: {
+            allOn: true,
+            resvOn: true,
+            promoOn: true,
+            newsletterOn: true,
+          },
+          email: {
+            allOn: true,
+            resvOn: true,
+            promoOn: true,
+            newsletterOn: true,
+          },
+        },
       },
       {
         userId: "u1003",
@@ -6058,6 +6086,20 @@ app.get("/init-data", async (req, res) => {
         createdAt: "2025-03-16T09:09:50.890827",
         lastLogin: "2025-09-21T09:09:50.890831",
         reviewAmount: ["rev4002", "rev2080", "rev2459", "rev3487", "rev3260"],
+        notifications: {
+          text: {
+            allOn: true,
+            resvOn: true,
+            promoOn: true,
+            newsletterOn: true,
+          },
+          email: {
+            allOn: true,
+            resvOn: true,
+            promoOn: true,
+            newsletterOn: true,
+          },
+        },
       },
     ],
   };
