@@ -6356,23 +6356,21 @@ app.put("/reservations/:bookingId", async (req, res) => {
 
 //---------------------------------3. 會員相關API------------------------------------------------
 
-//取得所有會員 (admin)
-// app.get("/members", (req, res) => {
-//   //把passwordhash過濾掉
-//   const safeMembers = data.members.map((member) => {
-//     const { passwordHash, ...safeData } = member;
-//     return safeData;
-//   });
-
-//   res.json(safeMembers);
-// });
-
 //取得所有會員 (admin) firebase
-app.get("/members", async (req, res) => {
-  const snapshot = await db.ref("members").once("value");
-  const safeMembers = snapshot.val() ? Object.values(snapshot.val()) : [];
+app.get("/members", async (req, res, next) => {
+  try {
+    const snapshot = await db.ref("members").once("value");
+    const membersData = snapshot.val();
 
-  res.json(safeMembers);
+    const members = membersData ? Object.values(membersData) : [];
+    const safeMembers = members.map(
+      ({ passwordHash, ...safeData }) => safeData,
+    );
+
+    res.json(safeMembers);
+  } catch (error) {
+    next(error);
+  }
 });
 
 //取得單一會員資料
