@@ -17,8 +17,18 @@ app.use(
 ); // 允許跨域請求（讓前端可以打這個 API）
 app.use(express.json()); // 解析請求 body 裡的 JSON 格式資料
 
-// const serviceAccount = require("./firebase-service-account.json");
-const serviceAccount = JSON.parse(process.env.FIREBASE_SERVICE_ACCOUNT || "{}");
+let serviceAccount;
+if (process.env.FIREBASE_SERVICE_ACCOUNT) {
+  serviceAccount = JSON.parse(process.env.FIREBASE_SERVICE_ACCOUNT);
+} else {
+  serviceAccount = require("./firebase-service-account.json");
+}
+
+admin.initializeApp({
+  credential: admin.credential.cert(serviceAccount),
+  databaseURL:
+    "https://foodie-2026-default-rtdb.asia-southeast1.firebasedatabase.app/",
+});
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount),
   databaseURL:
