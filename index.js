@@ -6277,35 +6277,40 @@ app.get("/reservations", async (req, res) => {
 // });
 
 //新增訂位 firebase版
-app.post("/reservations", async (req, res) => {
-  const payload = req.body;
-
-  if (
-    !payload.restaurantId ||
-    !payload.date ||
-    !payload.time ||
-    !payload.partySize
-  ) {
-    return res.status(400).json({ error: "請提供完整的訂位資訊" });
-  }
-
+app.post("/reservations", async (req, res, next) => {
   try {
+    const payload = req.body || {};
+    const partySize = Number(payload.partySize);
+
+    if (
+      !payload.restaurantId ||
+      !payload.date ||
+      !payload.time ||
+      !Number.isInteger(partySize) ||
+      partySize <= 0 ||
+      partySize > 20
+    ) {
+      return res.status(400).json({ error: "訂位資料格式不正確" });
+    }
+
     const newRef = db.ref("reservations").push();
-    await newRef.set({
-      ...payload,
+    const newReservation = {
+      restaurantId: payload.restaurantId,
+      date: payload.date,
+      time: payload.time,
+      partySize,
       bookingId: newRef.key,
       status: "已預約",
-      createdAt: new Date().toISOString().split("T")[0],
-    });
+      createdAt: new Date().toISOString(),
+    };
+    await newRef.set(newReservation);
 
-    res.status(201).json({
+    res.status(201).location(`/reservations/${newReservation.bookingId}`).json({
       message: "訂位成功，資料已儲存到firebase",
-      reservation: payload,
+      reservation: newReservation,
     });
   } catch (error) {
-    res.status(500).json({
-      error: "伺服器錯誤",
-    });
+    next(error);
   }
 });
 
