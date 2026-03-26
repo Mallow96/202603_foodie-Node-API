@@ -29,11 +29,6 @@ admin.initializeApp({
   databaseURL:
     "https://foodie-2026-default-rtdb.asia-southeast1.firebasedatabase.app/",
 });
-admin.initializeApp({
-  credential: admin.credential.cert(serviceAccount),
-  databaseURL:
-    "https://foodie-2026-default-rtdb.asia-southeast1.firebasedatabase.app/",
-});
 
 const db = admin.database();
 
