@@ -11,7 +11,8 @@ const app = express();
 app.use(
   cors({
     origin: [
-      "http://localhost:5173", // Vite 預設
+      "http://localhost:5173",
+      "https://mallow96.github.io", // Vite 預設
     ],
   }),
 ); // 允許跨域請求（讓前端可以打這個 API）
