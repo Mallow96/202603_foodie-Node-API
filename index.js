@@ -9184,7 +9184,7 @@ app.get(
         return addressMatch || dishMatch;
       });
 
-      // 名稱、分類：用 Fuse.js 模糊比對（處理打錯字的情況）
+      // 名稱、分類：用 Fuse.js 模糊比對
       const fuse = new Fuse(filtered, {
         keys: ["name", "category"],
         threshold: 0.3,
