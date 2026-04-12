@@ -9175,7 +9175,7 @@ app.get(
     if (keyword) {
       const fuse = new Fuse(filtered, {
         keys: ["name", "category", "address", "signatureDishes"],
-        threshold: 0.6,
+        threshold: 0.4,
         ignoreLocation: true,
       });
       filtered = fuse.search(keyword).map((r) => r.item);
