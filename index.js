@@ -9173,12 +9173,32 @@ app.get(
 
     //依關鍵字
     if (keyword) {
+      const kw = keyword.trim().toLowerCase();
+
+      // 地址、招牌料理：用 includes() 精確子字串比對
+      const exactMatches = filtered.filter((r) => {
+        const addressMatch = r.address?.toLowerCase().includes(kw);
+        const dishMatch =
+          Array.isArray(r.signatureDishes) &&
+          r.signatureDishes.some((d) => d.toLowerCase().includes(kw));
+        return addressMatch || dishMatch;
+      });
+
+      // 名稱、分類：用 Fuse.js 模糊比對（處理打錯字的情況）
       const fuse = new Fuse(filtered, {
-        keys: ["name", "category", "address", "signatureDishes"],
-        threshold: 0.4,
+        keys: ["name", "category"],
+        threshold: 0.3,
         ignoreLocation: true,
       });
-      filtered = fuse.search(keyword).map((r) => r.item);
+      const fuseMatches = fuse.search(keyword).map((r) => r.item);
+
+      // 合併並去除重複（用 id 判斷）
+      const seen = new Set();
+      filtered = [...exactMatches, ...fuseMatches].filter((r) => {
+        if (seen.has(r.id)) return false;
+        seen.add(r.id);
+        return true;
+      });
     }
 
     res.json(filtered);
