@@ -9174,7 +9174,7 @@ app.get(
     //依關鍵字
     if (keyword) {
       const fuse = new Fuse(filtered, {
-        keys: ["name", "category"],
+        keys: ["name", "category", "address", "signatureDishes"],
         threshold: 0.6,
         ignoreLocation: true,
       });
